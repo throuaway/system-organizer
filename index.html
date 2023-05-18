@@ -1,1125 +1,547 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-        <title>System Organizer</title>
-
-        <style>
-
+	<title>System Organizer</title>
+	<style>
         html, body, .container {
-
             height: 100%;
-
             width: 100%;
-
             background-color: #fffaa0;
-
         }
 
-                body {
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+		}
 
-                        margin: 0;
-
-                        padding: 0;
-
-                        font-family: Arial, sans-serif;
-
-                }
-
-                .container {
-
-                        display: flex;
-
-                        flex-wrap: wrap;
-
-                }
-
-                .main {
-
+		.main {
             margin: 0 auto;
-
             margin-top: 0%;
-
-                        padding: 20px;
-
-                        display: flex;
-
+			padding: 20px;
+			display: flex;
             flex-direction: row;
-
-                        justify-content: space-between;
-
+			justify-content: space-between;
             background-color: #fffaa0;
-
-                }
-
-                .column {
-
-                        background-color: #f2f2f2;
-
-                        box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-
+		}
+		.column {
+			background-color: #f2f2f2;
+			box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
             flex: 1;
-
             border: 1px solid rgba(0, 0, 0, 0.1);
-
             margin-right: 0.3%;
-
             border-radius: 20px;
-
-                }
-
+		}
         .column:nth-child(1) {
-
             background-color: #d4afb9;
-
         }
-
         .column:nth-child(2) {
-
             background-color: #d1cfe2;
-
         }
-
         .column:nth-child(3) {
-
             background-color: #9cadce;
-
         }
-
         .column:nth-child(4) {
-
             background-color: #7ec4cf;
-
         }
-
         .column:nth-child(5) {
-
             background-color: #daeaf6;
-
         }
-
         .column:nth-child(5) {
-
             background-color: #876b65;
-
         }
 
         .column .col-header {
-
             padding: 10px;
-
             background-color: rgba(0, 0, 0, 0.2);
-
             text-align: center;
-
             border-radius: 20px 20px 0 0;
-
         }
 
         .column .col-content {
-
             padding: 10px;
-
             margin: 10px 10px 0 10px;
-
         }
 
-                .column h2 {
-
-                        font-size: 24px;
-
+		.column h2 {
+			font-size: 24px;
             text-align: center;
-
             width: 100%;
 
-                }
-
-                .column p {
-
-                        font-size: 16px;
-
-                        line-height: 1.5;
-
-                        margin: 0;
-
-                }
-
-                .navbar {
-
+		}
+		.column p {
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0;
+		}
+		.navbar {
             width: 100%;
-
-                        background-color: #333;
-
-                        color: #fff;
-
-                        padding: 20px 0 20px 0;
-
-                }
-
-                .navbar ul {
-
+			background-color: #333;
+			color: #fff;
+			padding: 20px 0 20px 0;
+		}
+		.navbar > ul {
             display: flex;
-
             flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+        
+		.navbar > ul * {
+			margin: 0 10px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+        
+        .dl-button {
+            border: 1px transparent rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+        }
 
-            justify-content: center;
-
-                        list-style: none;
-
-                        margin: 0;
-
-                        padding: 0;
-
-                }
-
-                .navbar li {
-
-                        margin: 0 10px;
-
-                        font-size: 18px;
-
-                        font-weight: bold;
-
-                        text-transform: uppercase;
-
-                }
-
-                .navbar a {
-
-                        color: #fff;
-
-                        text-decoration: none;
-
-                }
+		.navbar a {
+			color: #fff;
+			text-decoration: none;
+		}
 
         .lec-container {
-
             height: 4em;
-
             padding: 5px;
-
             margin-top: 0px;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: flex-start;
-
             align-items: center;
-
             margin: 0 1px 10px 1px;
-
             padding-bottom: 10px;
-
             border: 2px solid rgba(0, 0, 0, 0.8);
-
             border-radius: 6px;
-
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-
             background-color: rgba(200, 0, 0, 0.07);
-
         }
 
         .lec-container.merged {
-
             background-color: rgba(20, 0, 0, 0.3);
-
             box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
-
             border: 3px solid rgb(0, 0, 0);
-
             color:rgb(0, 0, 0)
-
         }
 
         .lec-container.merged h3{
-
             color:rgba(0, 0, 0, 0.9)
-
         }
-
+      
         .lec-container h3{
-
             flex: 1;
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             text-align: center;
-
             font-weight: bold;
-
             color: #333;
-
             margin: 0 0 5px 0;
-
         }
-
         .button-container {
-
             align-self: flex-end;
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             width: 100%;
-
             margin: 0;
-
         }
-
         .lec-button {
-
             flex: 1;
-
             border: 1px transparent rgba(0, 0, 0, 0.3);
-
             font-size: 16px;
-
             font-weight: bold;
-
             cursor: pointer;
-
             border-radius: 6px;
-
         }
-
         .lec-button.available {
-
             background-color: rgba(250,250,250, 1);
-
         }
-
         .lec-button.selected {
-
             background-color: rgba(62, 228, 111, 0.3);
-
         }
-
         .lec-button.completed {
-
             background-color: rgba(62, 228, 111, 0.7);
-
         }
-
         .lec-button.disabled {
-
             background-color: rgba(150, 150, 150, 1);
-
             cursor: default;
-
         }
 
         .lab-div {
-
             text-align: center;
-
             background-color: rgba(0, 0, 0, 0.1);
-
             padding: 0px;
-
             margin-bottom: 10px;
-
             height: fit-content;
-
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-
             border: 2px solid rgba(0, 0, 0, 0.8);
-
         }
 
         .lab-div h3 {
-
             margin: 10px;
-
             padding: 10px;
-
         }
 
-        .session {
 
-            position: absolute;
-
-            left: 50px;
-
-        }
-
-        .subject {
-
-            align-self: flex-start;
-
-            order: 2;
-
-            margin: auto 0;
-
-        }
 
         #selection-box {
-
             position: absolute;
-
             border: 2px dashed rgba(0, 0, 0, 0.5);
-
             background-color: rgba(0, 0, 0, 0.2);
-
             pointer-events: none;
-
           }
-
+        
         @media (max-width: 85.7em) {
-
             .lec-container {
-
-            height: 6em;
-
+            height: 6em; 
             }
-
             .lec-button {
-
                 font-size: calc(15px);
-
             }
-
         }
 
         @media (max-width: 57.3em) {
-
             .lec-container {
-
-            height: 7em;
-
+            height: 7em; 
             }
-
         }
-
         @media (max-width: 55.75em) {
-
             .navbar {
-
-            width: 55.75em;
-
+            width: 55.75em; 
             }
-
         }
-
-        </style>
-
+        
+        li .session {
+            order: 1;
+        }
+        li .subject {
+            order: 2;
+        }
+        li .download {
+            order: 3;
+        }
+            
+	</style>
 </head>
-
 <body>
-
-        <div class="navbar">
-
-                <ul>
-
-                        <li><a class="session" href="#">Midterm</a></li>
-
-                        <li><a class="subject" href="#">UGS</a></li>
+      
+	<div class="navbar">
+		<ul>
+			<li><a class="session" href="#">MIDTERM</a></li>
+			<li><a class="subject" href="#">UGS</a></li>
+            <a href="https://drive.google.com/uc?id=1etz5Z77ubRpExoBd7hGtEDzjEjfoEKpx&export=download" download><button class="dl-button">Download Zip</button></a>
 
             <!-- <div>
-
                 <input type="text" id="search" placeholder="Search.." oninput="displayResults(search(this.textContent))">
-
                 <div id="searchResults"></div>
-
             </div> -->
 
-                        <!-- <li><a href="#">Contact</a></li> -->
-
-                </ul>
-
+			<!-- <li><a href="#">Contact</a></li> -->
+		</ul>
+	</div>
+	<div class="container">
+		<div class="main">
         </div>
-
-        <div class="container">
-
-                <div class="main">
-
-        </div>
-
     </div>
-
     <script name="page setup">
-
         function setState(button, state) {
-
             if (button.classList.contains('disabled')) {
-
               return;
-
             }
 
             button.classList.remove('available', 'selected', 'completed', 'disabled');
-
+          
             button.classList.add(state);
-
           }
-
 fetch('lectures2.json')
-
 .then(response => response.json())
-
 .then(data => {
-
   main = document.querySelector('.main');
-
   maxLecCount = 0;
-
   data.forEach(subject => {
-
     const column = document.createElement('div');
-
     column.classList.add('column');
 
     const colheaderdiv = document.createElement('div');
-
     colheaderdiv.classList.add('col-header');
 
     colheader = document.createElement('h2');
-
     colheader.textContent = subject.name;
 
     colheaderdiv.appendChild(colheader);
-
-    column.appendChild(colheaderdiv);
-
+    column.appendChild(colheaderdiv);  
     main.appendChild(column);
 
+
     addMerged = true;
-
     if (addMerged) {
-
         const row = document.createElement('div');
-
         row.classList.add('lec-container');
-
         row.classList.add('merged');
 
         const title = document.createElement('h3');
-
         title.classList.add('lecture-title');
-
         title.textContent = "Merged";
-
+        
         const buttonContainer = document.createElement('div');
-
         buttonContainer.classList.add('button-container');
-
+        
         lecture = subject.midterm.merged;
-
         buttonNames = ["Playlist", "Slides", "Modified"];
-
         for (let i = 0; i < buttonNames.length; i++) {
-
             const button = document.createElement('button');
-
             buttonName = buttonNames[i];
-
             let linkName = lecture[buttonName.toLowerCase()];
-
             button.classList.add('lec-button');
-
             button.textContent = buttonName;
-
             if (linkName) {
-
                 button.addEventListener('click', () => {
-
                         window.open(linkName);
-
                 });
-
                 setState(button, 'available');
-
             } else {
-
                 setState(button, 'disabled')
-
             }
-
             button.oncontextmenu = function() {
-
                 return false;
-
             }
 
             buttonContainer.appendChild(button);
-
         }
 
-        row.appendChild(title);
 
+        row.appendChild(title);
         row.appendChild(buttonContainer);
 
         column.appendChild(row);
-
     }
 
+    
     curLecCount = 1; // counting merged thing as lecture
-
     subject.midterm.lectures.forEach(lecture => {
-
         curLecCount++;
-
         const row = document.createElement('div');
-
         row.classList.add('lec-container');
 
         const title = document.createElement('h3');
-
         title.classList.add('lecture-title');
-
         title.textContent = lecture.name;
-
+        
         const buttonContainer = document.createElement('div');
-
         buttonContainer.classList.add('button-container');
-
+        
         buttonNames = ["Video", "Slides", "Modified"];
-
         for (let i = 0; i < buttonNames.length; i++) {
-
             const button = document.createElement('button');
-
             buttonName = buttonNames[i];
-
             let linkName = lecture[buttonName.toLowerCase()];
-
             button.classList.add('lec-button');
-
             button.textContent = buttonName;
-
             if (linkName) {
-
                 button.addEventListener('click', () => {
-
                         window.open(linkName);
-
                 });
-
                 setState(button, 'available');
-
             } else {
-
                 setState(button, 'disabled')
-
             }
-
             button.oncontextmenu = function() {
-
                 return false;
-
             }
 
             buttonContainer.appendChild(button);
-
         }
 
-        row.appendChild(title);
 
+        row.appendChild(title);
         row.appendChild(buttonContainer);
 
         column.appendChild(row);
-
+    
     if (curLecCount > maxLecCount) {
-
         maxLecCount = curLecCount;
-
     }
-
     });
-
     if (subject.midterm.includeLabs) {
-
         labdiv = document.createElement('div');
-
         labdiv.classList.add('lab-div');
-
         const title = document.createElement('h3');
-
         title.classList.add('lecture-title');
-
         title.textContent = "Labs";
-
         labdiv.appendChild(title);
-
         column.appendChild(labdiv);
 
         subject.labs.lectures.forEach(lecture => {
-
             curLecCount++;
-
             const row = document.createElement('div');
-
             row.classList.add('lec-container');
-
+    
             const title = document.createElement('h3');
-
             title.classList.add('lecture-title');
-
             title.textContent = lecture.name;
-
+            
             const buttonContainer = document.createElement('div');
-
             buttonContainer.classList.add('button-container');
+            
 
             buttonNames = ["Video", "Slides", "Modified"];
-
             for (let i = 0; i < buttonNames.length; i++) {
-
                 const button = document.createElement('button');
-
                 buttonName = buttonNames[i];
-
                 let linkName = lecture[buttonName.toLowerCase()];
-
                 button.classList.add('lec-button');
-
                 button.textContent = buttonName;
-
                 if (linkName) {
-
                     button.addEventListener('click', () => {
-
                             window.open(linkName);
-
                     });
-
                     setState(button, 'available');
-
                 } else {
-
                     setState(button, 'disabled')
-
                 }
-
                 button.oncontextmenu = function() {
-
                     return false;
-
                 }
-
+    
                 buttonContainer.appendChild(button);
-
             }
-
+    
+    
             row.appendChild(title);
-
             row.appendChild(buttonContainer);
-
+    
             column.appendChild(row);
-
+        
         if (curLecCount > maxLecCount) {
-
             maxLecCount = curLecCount;
-
         }
-
         })
-
   }
-
     }
-
     )
 
+  
 });
 
+
     /*window.onresize = function() {
-
         let ratio = window.innerWidth / parseFloat(getComputedStyle(document.querySelector("body"))["font-size"]);
-
         if (ratio < 86) {
 
         }
-
     }*/
-
     </script>
-
     <script name="select experiment">
-
         let isMouseDown = false;
-
         let initialX, initialY;
-
         let selectionBox;
 
         document.addEventListener('mousedown', function(event) {
-
             if (event.button === 2) {
-
                 isMouseDown = true;
-
                 initialX = event.clientX;
-
                 initialY = event.clientY;
 
                 selectionBox = document.createElement('div');
-
                 selectionBox.id = 'selection-box';
-
                 document.body.appendChild(selectionBox);
 
                 selectionBox.style.left = initialX + 'px';
-
                 selectionBox.style.top = initialY + 'px';
 
                 onBoxMove(initialX, initialY); // make a 0 size box for cases where user clicks without moving
-
             }
-
         });
-
+        
         function onBoxMove(currentX, currentY) {
-
             const minX = Math.min(initialX, currentX);
-
                 const minY = Math.min(initialY, currentY);
-
                 const maxX = Math.max(initialX, currentX);
-
                 const maxY = Math.max(initialY, currentY);
 
                 selectionBox.style.left = minX + pageXOffset + 'px';
-
                 selectionBox.style.top = minY + pageYOffset + 'px';
-
                 selectionBox.style.width = maxX - minX + 'px';
-
                 selectionBox.style.height = maxY - minY + 'px';
 
                 selectButtons(minX, minY, maxX, maxY);
-
         }
 
         document.addEventListener('mousemove', function(event) {
-
             if (isMouseDown) {
-
                 const currentX = event.clientX;
-
                 const currentY = event.clientY;
 
                 onBoxMove(currentX, currentY);
-
             }
-
         });
-
         document.addEventListener('mouseup', function(event) {
-
             if (event.button === 2 && isMouseDown) {
-
                 isMouseDown = false;
-
                 document.body.removeChild(selectionBox);
 
                 buttons = document.querySelectorAll('.lec-button');
 
                 for (let i = 0; i < buttons.length; i++) {
-
                         let button = buttons[i];
-
                     if (buttons[i].classList.contains('selected')) {
-
                         if (button.complete) {
-
                             setState(button, 'available');
-
                         } else {
-
                             setState(button, 'completed');
-
                         }
-
                         button.complete = !button.complete;
-
                     } else {
-
                         if (button.complete) {
-
                             setState(button, 'completed');
-
                         } else {
-
                             setState(button, 'available');
-
                         }
-
                     }
-
                 }
-
             }
-
         });
-
         document.oncontextmenu = function(event) {
-
             return false;
-
         }
 
         function selectButtons(minX, minY, maxX, maxY) {
-
         const buttons = document.querySelectorAll('.lec-button');
 
         for (let i = 0; i < buttons.length; i++) {
-
             const button = buttons[i];
-
             const buttonRect = button.getBoundingClientRect();
 
             if (
-
                 buttonRect.left <= maxX &&
-
                 buttonRect.right >= minX &&
-
                 buttonRect.top <= maxY &&
-
                 buttonRect.bottom >= minY
-
             ) {
-
                 setState(button, 'selected');
-
             } else {
-
                 if (button.complete) {
-
                     setState(button, 'completed');
-
                 } else {
-
                     setState(button, 'available');
-
                 }
-
             }
-
         }
-
         }
 
     </script>
-
-    <script name="search">
-
-        var searchables;
-
-        fetch('searchables.json').then(response => response.json()).then(data => {
-
-            searchables = data;
-
-        })
-
-        function getIndicesOf(searchStr, str, caseSensitive) {
-
-            var searchStrLen = searchStr.length;
-
-            if (searchStrLen == 0) {
-
-                return [];
-
-            }
-
-            var startIndex = 0, index, indices = [];
-
-            while ((index = str.indexOf(searchStr, startIndex)) > -1) {
-
-                indices.push(index);
-
-                startIndex = index + searchStrLen;
-
-            }
-
-            return indices;
-
-        }
-
-        function getPage(index, offsets) {
-
-            for (let i=0; i<offsets.length; i++) {
-
-                if (offsets[i] > index) {
-
-                    return i;
-
-                }
-
-            }
-
-            return i;
-
-        }
-
-        subjsToSearch = ["Anatomy", "Physiology", "Pathology", "Microbiology"]
-
-        function search(query) {
-
-            results = {}
-
-            for (let i=0; i<subjsToSearch.length; i++) {
-
-                subject = subjsToSearch[i]
-
-                results[subject] = {}
-
-                results[subject].count = 0;
-
-                results[subject].lectures = []
-
-                subject_data = searchables[subject]
-
-                for (lec=0; lec<subject_data.length; lec++) {
-
-                    results[subject].lectures[lec] = {count: 0, pages: {}}
-
-                    lec_data = subject_data[lec]
-
-                    indices = getIndicesOf(query, lec_data.text)
-
-                    if (indices.length > 0) {
-
-                        results[subject].count += indices.length;
-
-                        results[subject].lectures[lec].count = indices.length
-
-                        results[subject].lectures[lec].pages
-
-                        for (let j=0; j<indices.length; j++) {
-
-                            index = indices[j]
-
-                            page = getPage(index, lec_data.offsets)
-
-                            if (!results[subject].lectures[lec].pages[page]) {
-
-                                results[subject].lectures[lec].pages[page] = 1;
-
-                            } else {
-
-                                results[subject].lectures[lec].pages[page] += 1;
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-                if (results[subject].count == 0) {
-
-                    delete results[subject]
-
-                }
-
-            }
-
-            return results;
-
-        }
-
-        function displayResults(searchResults) {
-
-            clearResults();
-
-            for (const subject in searchResults) {
-
-                // Create a container element for the subject
-
-                const subjectContainer = document.createElement('div');
-
-                subjectContainer.classList.add('subject');
-
-                // Create a heading element for the subject
-
-                const subjectHeading = document.createElement('h2');
-
-                subjectHeading.textContent = subject;
-
-                subjectContainer.appendChild(subjectHeading);
-
-                // Iterate over the lectures in the subject
-
-                for (const lecture of searchResults[subject].lectures) {
-
-                  // Check if the lecture count is greater than 0
-
-                  if (lecture.count > 0) {
-
-                    // Create a container element for the lecture
-
-                    const lectureContainer = document.createElement('div');
-
-                    lectureContainer.classList.add('lecture');
-
-                    // Create a heading element for the lecture
-
-                    const lectureHeading = document.createElement('h3');
-
-                    lectureHeading.textContent = `Lecture Count: ${lecture.count}`;
-
-                    lectureContainer.appendChild(lectureHeading);
-
-                    // Iterate over the pages in the lecture
-
-                    for (const page in lecture.pages) {
-
-                        // Create a paragraph element for the page
-
-                        const pageParagraph = document.createElement('p');
-
-                        pageParagraph.textContent = `Page ${page}: ${lecture.pages[page]}`;
-
-                        lectureContainer.appendChild(pageParagraph);
-
-                    }
-
-                    // Append the lecture container to the subject container
-
-                    subjectContainer.appendChild(lectureContainer);
-
-                  }
-
-                }
-
-                // Append the subject container to the search results container
-
-                const searchResultsContainer = document.getElementById('searchResults');
-
-                searchResultsContainer.appendChild(subjectContainer);
-
-              }
-
-            }
-
-          // Helper function to clear the search results
-
-          function clearResults() {
-
-            const searchResultsContainer = document.getElementById('searchResults');
-
-            while (searchResultsContainer.firstChild) {
-
-              searchResultsContainer.firstChild.remove();
-
-            }
-
-          }
-
-    </script>
-
 </body>
+</html>
